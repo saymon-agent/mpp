@@ -11167,4 +11167,97 @@ export const services: ServiceDef[] = [
       },
     ],
   },
+
+  // ── Saymon RU Data ──────────────────────────────────────────────────────
+  {
+    id: "saymon-ru-data",
+    name: "Saymon RU Data API",
+    url: "https://payforapi.com",
+    serviceUrl: "https://payforapi.com",
+    description:
+      "Russian-language data APIs for AI agents: EGRUL/INN company lookup, Cyrillic web search, RU page to Markdown, research packages, and Russian Post APIs (tariff, tracking, delivery time, offices, ZIP, address normalization). Pay per request in USDC on Base via x402 (HTTP 402), no API keys, no accounts.",
+    categories: ["data", "search"],
+    integration: "first-party",
+    tags: ["russia", "egrul", "inn", "russian-post", "tracking", "cyrillic", "company-check", "research", "address"],
+    status: "active",
+    docs: {
+      homepage: "https://payforapi.com",
+      llmsTxt: "https://payforapi.com/llms.txt",
+      apiReference: "https://payforapi.com/openapi.json",
+    },
+    provider: { name: "Saymon", url: "https://payforapi.com" },
+    realm: "payforapi.com",
+    intent: "charge",
+    payments: [
+      { method: "x402", currency: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", decimals: 6 },
+    ],
+    endpoints: [
+      {
+        route: "POST /v1/inn-lookup",
+        desc: "Verify Russian legal entity by INN (EGRUL)",
+        amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/ru-search",
+        desc: "Cyrillic web search for agents",
+        amount: "20000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/ru-page",
+        desc: "Russian page to LLM-ready Markdown",
+        amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/research",
+        desc: "Research pack: search + top pages in Markdown",
+        amount: "20000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/research/deep",
+        desc: "Research deep: 3 searches + up to 10 pages in Markdown",
+        amount: "50000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/pochta-tariff",
+        desc: "Russian Post: delivery cost and time between postcodes",
+        amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/pochta-track",
+        desc: "Russian Post: track a parcel by tracking number",
+        amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/pochta-delivery-time",
+        desc: "Russian Post: delivery time between postcodes",
+        amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/pochta-offices",
+        desc: "Russian Post: offices by postcode or coordinates",
+        amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/pochta-zip",
+        desc: "Russian Post: office address by postcode",
+        amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/pochta-address",
+        desc: "Russian Post: Russian address normalization",
+        amount: "10000",
+        unitType: "request",
+      },
+    ],
+  },
 ];
