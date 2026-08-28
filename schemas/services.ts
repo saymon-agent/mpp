@@ -11258,6 +11258,43 @@ export const services: ServiceDef[] = [
         amount: "10000",
         unitType: "request",
       },
+      // ── LLM Chat (AnyModel.org upstream, ×5 margin) ──────────────────────
+      {
+        route: "POST /v1/llm/cc-claude-opus-5",
+        desc: "Claude Opus 5 — most capable Anthropic model, max_tokens=2048",
+        amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/llm/cc-claude-sonnet-5",
+        desc: "Claude Sonnet 5 — fast Anthropic model, cost-effective",
+        amount: "5000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/llm/cc-claude-opus-4-8",
+        desc: "Claude Opus 4.8 — Anthropic flagship, max_tokens=2048",
+        amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/llm/cx-gpt-5.6-sol",
+        desc: "GPT-5.6 Sol (Codex) — code & reasoning specialist",
+        amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/llm/cx-gpt-5.5",
+        desc: "GPT-5.5 — OpenAI general-purpose, cost-efficient",
+        amount: "5000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/llm/ds-deepseek-v4-pro",
+        desc: "DeepSeek V4 Pro — affordable high-quality reasoning",
+        amount: "2000",
+        unitType: "request",
+      },
     ],
   },
 ];
