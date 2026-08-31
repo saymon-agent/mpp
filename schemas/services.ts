@@ -11028,6 +11028,66 @@ export const services: ServiceDef[] = [
     ],
   },
 
+  // ── TempVPN ────────────────────────────────────────────────────────────
+  {
+    id: "tempvpn",
+    name: "TempVPN",
+    url: "https://registry.tempvpn.xyz",
+    serviceUrl: "https://registry.tempvpn.xyz",
+    description:
+      "Discover and buy temporary WireGuard VPN sessions worldwide with minute-based Tempo MPP payments.",
+    categories: ["web"],
+    integration: "third-party",
+    tags: ["networking", "privacy", "tempo", "vpn", "wireguard"],
+    status: "active",
+    docs: {
+      homepage: "https://registry.tempvpn.xyz/docs",
+      llmsTxt: "https://registry.tempvpn.xyz/llms.txt",
+      apiReference: "https://registry.tempvpn.xyz/openapi.json",
+    },
+    provider: { name: "TempVPN", url: "https://registry.tempvpn.xyz" },
+    realm: "registry.tempvpn.xyz",
+    intent: "charge",
+    payments: [TEMPO_PAYMENT],
+    endpoints: [
+      {
+        route: "GET /nodes",
+        desc: "Discover available VPN nodes by country, city, or region",
+      },
+      {
+        route: "POST /sessions",
+        desc: "Buy a fixed-duration WireGuard VPN session",
+        dynamic: true,
+        amountHint:
+          "$0.01 per minute; duration must be a whole number of minutes.",
+        unitType: "minute",
+      },
+      {
+        route: "POST /sessions/:session_id/connect",
+        desc: "Activate a paid balance on any currently eligible node",
+      },
+      {
+        route: "GET /sessions/:session_id/status",
+        desc: "Read authoritative balance and lifecycle state",
+      },
+      {
+        route: "POST /sessions/:session_id/heartbeat",
+        desc: "Renew an active session lease and update consumed time",
+      },
+      {
+        route: "POST /sessions/:session_id/pause",
+        desc: "Stop connected-time billing and preserve unused balance",
+      },
+      {
+        route: "POST /sessions/stream",
+        desc: "Open a metered WireGuard VPN session",
+        amount: "10000",
+        intent: "session",
+        unitType: "minute",
+      },
+    ],
+  },
+
   // ── AgentPhone (Orthogonal) ──
   {
     id: "orth-agentphone",
@@ -11178,7 +11238,17 @@ export const services: ServiceDef[] = [
       "Russian-language data APIs for AI agents: EGRUL/INN company lookup, Cyrillic web search, RU page to Markdown, research packages, and Russian Post APIs (tariff, tracking, delivery time, offices, ZIP, address normalization). Pay per request in USDC on Base via x402 (HTTP 402), no API keys, no accounts.",
     categories: ["data", "search"],
     integration: "first-party",
-    tags: ["russia", "egrul", "inn", "russian-post", "tracking", "cyrillic", "company-check", "research", "address"],
+    tags: [
+      "russia",
+      "egrul",
+      "inn",
+      "russian-post",
+      "tracking",
+      "cyrillic",
+      "company-check",
+      "research",
+      "address",
+    ],
     status: "active",
     docs: {
       homepage: "https://payforapi.com",
@@ -11189,7 +11259,11 @@ export const services: ServiceDef[] = [
     realm: "payforapi.com",
     intent: "charge",
     payments: [
-      { method: "x402", currency: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", decimals: 6 },
+      {
+        method: "x402",
+        currency: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+        decimals: 6,
+      },
     ],
     endpoints: [
       {
@@ -11256,43 +11330,6 @@ export const services: ServiceDef[] = [
         route: "POST /v1/pochta-address",
         desc: "Russian Post: Russian address normalization",
         amount: "10000",
-        unitType: "request",
-      },
-      // ── LLM Chat (AnyModel.org upstream, ×5 margin) ──────────────────────
-      {
-        route: "POST /v1/llm/cc-claude-opus-5",
-        desc: "Claude Opus 5 — most capable Anthropic model, max_tokens=2048",
-        amount: "10000",
-        unitType: "request",
-      },
-      {
-        route: "POST /v1/llm/cc-claude-sonnet-5",
-        desc: "Claude Sonnet 5 — fast Anthropic model, cost-effective",
-        amount: "5000",
-        unitType: "request",
-      },
-      {
-        route: "POST /v1/llm/cc-claude-opus-4-8",
-        desc: "Claude Opus 4.8 — Anthropic flagship, max_tokens=2048",
-        amount: "10000",
-        unitType: "request",
-      },
-      {
-        route: "POST /v1/llm/cx-gpt-5.6-sol",
-        desc: "GPT-5.6 Sol (Codex) — code & reasoning specialist",
-        amount: "10000",
-        unitType: "request",
-      },
-      {
-        route: "POST /v1/llm/cx-gpt-5.5",
-        desc: "GPT-5.5 — OpenAI general-purpose, cost-efficient",
-        amount: "5000",
-        unitType: "request",
-      },
-      {
-        route: "POST /v1/llm/ds-deepseek-v4-pro",
-        desc: "DeepSeek V4 Pro — affordable high-quality reasoning",
-        amount: "2000",
         unitType: "request",
       },
     ],
