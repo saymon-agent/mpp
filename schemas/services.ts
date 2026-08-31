@@ -11238,7 +11238,17 @@ export const services: ServiceDef[] = [
       "Russian-language data APIs for AI agents: EGRUL/INN company lookup, Cyrillic web search, RU page to Markdown, research packages, and Russian Post APIs (tariff, tracking, delivery time, offices, ZIP, address normalization). Pay per request in USDC on Base via x402 (HTTP 402), no API keys, no accounts.",
     categories: ["data", "search"],
     integration: "first-party",
-    tags: ["russia", "egrul", "inn", "russian-post", "tracking", "cyrillic", "company-check", "research", "address"],
+    tags: [
+      "russia",
+      "egrul",
+      "inn",
+      "russian-post",
+      "tracking",
+      "cyrillic",
+      "company-check",
+      "research",
+      "address",
+    ],
     status: "active",
     docs: {
       homepage: "https://payforapi.com",
@@ -11249,7 +11259,11 @@ export const services: ServiceDef[] = [
     realm: "payforapi.com",
     intent: "charge",
     payments: [
-      { method: "x402", currency: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", decimals: 6 },
+      {
+        method: "x402",
+        currency: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+        decimals: 6,
+      },
     ],
     endpoints: [
       {
