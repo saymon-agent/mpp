@@ -11235,7 +11235,7 @@ export const services: ServiceDef[] = [
     url: "https://payforapi.com",
     serviceUrl: "https://payforapi.com",
     description:
-      "Russian-language data APIs for AI agents: EGRUL/INN company lookup, Cyrillic web search, RU page to Markdown, research packages, and Russian Post APIs (tariff, tracking, delivery time, offices, ZIP, address normalization). Pay per request in USDC on Base via x402 (HTTP 402), no API keys, no accounts.",
+      "Russian-language data APIs for AI agents: EGRUL/INN company lookup, Cyrillic and global web search, RU page to Markdown, research packages, Russian Post APIs (tariff, tracking, delivery time, offices, ZIP, address normalization), and crypto spot tickers. Pay per request in USDC on Base via x402 (HTTP 402), no API keys, no accounts.",
     categories: ["data", "search"],
     integration: "first-party",
     tags: [
@@ -11245,8 +11245,11 @@ export const services: ServiceDef[] = [
       "russian-post",
       "tracking",
       "cyrillic",
+      "web-search",
       "company-check",
       "research",
+      "crypto",
+      "ticker",
       "address",
     ],
     status: "active",
@@ -11275,6 +11278,12 @@ export const services: ServiceDef[] = [
       {
         route: "POST /v1/ru-search",
         desc: "Cyrillic web search for agents",
+        amount: "20000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/web-search",
+        desc: "Global web search for agents (Tavily aggregated via x402)",
         amount: "20000",
         unitType: "request",
       },
@@ -11330,6 +11339,12 @@ export const services: ServiceDef[] = [
         route: "POST /v1/pochta-address",
         desc: "Russian Post: Russian address normalization",
         amount: "10000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/ticker",
+        desc: "Bybit spot crypto tickers: last price, 24h change, volume",
+        amount: "5000",
         unitType: "request",
       },
     ],
