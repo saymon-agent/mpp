@@ -11235,7 +11235,7 @@ export const services: ServiceDef[] = [
     url: "https://payforapi.com",
     serviceUrl: "https://payforapi.com",
     description:
-      "Russian-language data and finance APIs for AI agents: EGRUL/INN company lookup, self-employed (NPD) status checks, Cyrillic and global web search, RU page to Markdown, research packages, Russian Post APIs (tariff, tracking, delivery time, offices, ZIP, address normalization), crypto spot tickers, official Central Bank of Russia FX rates, MOEX market quotes, and LLM chat (gpt-5.6-sol, claude-opus-5). Pay per request in USDC on Base via x402 (HTTP 402), no API keys, no accounts.",
+      "Russian-language data and finance APIs for AI agents: EGRUL/INN company lookup, self-employed (NPD) status checks, Cyrillic and global web search, RU page to Markdown, research packages, Russian Post APIs (tariff, tracking, delivery time, offices, ZIP, address normalization), crypto spot tickers, official Central Bank of Russia FX rates, MOEX market quotes, LLM chat (gpt-5.6-sol, claude-opus-5), plus value bundles: bulk Runet search (x10/x100), Russian Post delivery bundle, and KYB company-report (EGRUL + NPD + deep dossier in one payment). Pay per request in USDC on Base via x402 (HTTP 402), no API keys, no accounts.",
     categories: ["data", "search"],
     integration: "first-party",
     tags: [
@@ -11262,6 +11262,9 @@ export const services: ServiceDef[] = [
       "chat",
       "models",
       "ai",
+      "kyb",
+      "bulk",
+      "bundle",
     ],
     status: "active",
     docs: {
@@ -11385,6 +11388,30 @@ export const services: ServiceDef[] = [
       {
         route: "POST /v1/chat/claude-opus-5",
         desc: "LLM chat: Anthropic claude-opus-5 reasoning model, per call",
+        amount: "50000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/ru-search/x10",
+        desc: "Bulk Cyrillic search pack: 10 queries in one payment (parallel)",
+        amount: "180000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/ru-search/x100",
+        desc: "Bulk Cyrillic search pack: 100 queries in one payment (parallel)",
+        amount: "1600000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/pochta-delivery",
+        desc: "Russian Post delivery bundle: address + postcode + office + tariff + time in one payment",
+        amount: "40000",
+        unitType: "request",
+      },
+      {
+        route: "POST /v1/company-report",
+        desc: "KYB bundle: EGRUL company check + NPD status + deep Runet dossier in one payment",
         amount: "50000",
         unitType: "request",
       },
